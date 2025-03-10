@@ -54,8 +54,8 @@ train_df['label'] = train_labels[:subset_size]  # Add labels
 
 # Generate Pandas Profiling report
 # profile = ProfileReport(train_df, explorative=True)
-profile = ProfileReport(train_df.head(1000), explorative=True)
-profile = ProfileReport(profile, explorative=True, config={'correlations': {'auto': False}})
+# profile = ProfileReport(train_df.head(1000), explorative=True)
+profile = ProfileReport(train_df.head(1000), explorative=True, config={'correlations': {'auto': False}})
 profile.to_file("reports/fashion_mnist_eda.html")
 
 # Generate Sweetviz report
