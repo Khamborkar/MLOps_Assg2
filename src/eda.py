@@ -57,14 +57,15 @@ train_df['label'] = train_labels[:subset_size]  # Add labels
 # profile = ProfileReport(train_df, explorative=True)
 # profile = ProfileReport(train_df.head(1000), explorative=True)
 # Create a Settings instance
-settings = Settings()
+# settings = Settings()
 # Modify the settings
 # settings.correlations.auto = False  # Disable auto correlation
 # Modify the settings for correlations
 # settings.correlations["auto"] = False  # Disable auto correlation
 # Modify the settings for correlations
-settings.correlations = {"auto": False}  # Set correlations as a dictionary with auto set to False
-profile = ProfileReport(train_df.head(1000), explorative=True, config=settings)
+# settings.correlations = {"auto": False}  # Set correlations as a dictionary with auto set to False
+profile = ProfileReport(train_df.head(1000), explorative=True) 
+#, config=settings)
 profile.to_file("reports/fashion_mnist_eda.html")
 
 # Generate Sweetviz report
