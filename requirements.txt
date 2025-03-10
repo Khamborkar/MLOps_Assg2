@@ -9,4 +9,3 @@ tensorflow
 IPython
 torch
 torchvision
-tarfile
