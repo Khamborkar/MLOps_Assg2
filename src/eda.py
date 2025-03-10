@@ -2,6 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from ydata_profiling import ProfileReport
+from ydata_profiling.config import Settings
 import sweetviz as sv
 from tensorflow.keras.datasets import fashion_mnist
 
