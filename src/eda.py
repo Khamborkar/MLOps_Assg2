@@ -61,7 +61,9 @@ settings = Settings()
 # Modify the settings
 # settings.correlations.auto = False  # Disable auto correlation
 # Modify the settings for correlations
-settings.correlations["auto"] = False  # Disable auto correlation
+# settings.correlations["auto"] = False  # Disable auto correlation
+# Modify the settings for correlations
+settings.correlations = {"auto": False}  # Set correlations as a dictionary with auto set to False
 profile = ProfileReport(train_df.head(1000), explorative=True, config=settings)
 profile.to_file("reports/fashion_mnist_eda.html")
 
