@@ -1,10 +1,20 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-#from pandas_profiling import ProfileReport
 from ydata_profiling import ProfileReport
 import sweetviz as sv
 from tensorflow.keras.datasets import fashion_mnist
+
+import torchvision
+import torch
+
+# Download Fashion MNIST
+transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
+train_data = torchvision.datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
+test_data = torchvision.datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
+
+# Save the dataset as a .tar file or other format for DVC tracking
+
 
 # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
