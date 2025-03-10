@@ -59,7 +59,9 @@ train_df['label'] = train_labels[:subset_size]  # Add labels
 # Create a Settings instance
 settings = Settings()
 # Modify the settings
-settings.correlations.auto = False  # Disable auto correlation
+# settings.correlations.auto = False  # Disable auto correlation
+# Modify the settings for correlations
+settings.correlations["auto"] = False  # Disable auto correlation
 profile = ProfileReport(train_df.head(1000), explorative=True, config=settings)
 profile.to_file("reports/fashion_mnist_eda.html")
 
