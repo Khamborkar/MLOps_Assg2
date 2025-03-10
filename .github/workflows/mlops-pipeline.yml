@@ -57,7 +57,7 @@ jobs:
 
       - name: Run EDA and generate report
         run: |
-          python src/eda.py
+          python eda.py
           
       - name: Upload EDA report as artifact
         uses: actions/upload-artifact@v4
