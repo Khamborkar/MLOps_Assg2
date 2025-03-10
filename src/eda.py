@@ -48,12 +48,14 @@ save_as_tar(test_data, 'fashion_mnist_test.tar.gz')
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
 # Convert to Pandas DataFrame (only a subset for profiling)
-subset_size = 1000  # Only use the first 1000 images for profiling
+subset_size = 500  # Only use the first 1000 images for profiling
 train_df = pd.DataFrame(train_images[:subset_size].reshape(-1, 28 * 28))  # Flattening images
 train_df['label'] = train_labels[:subset_size]  # Add labels
 
 # Generate Pandas Profiling report
-profile = ProfileReport(train_df, explorative=True)
+# profile = ProfileReport(train_df, explorative=True)
+profile = ProfileReport(train_df.head(1000), explorative=True)
+profile = ProfileReport(profile, explorative=True, config={'correlations': {'auto': False}})
 profile.to_file("reports/fashion_mnist_eda.html")
 
 # Generate Sweetviz report
