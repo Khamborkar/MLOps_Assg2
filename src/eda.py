@@ -10,6 +10,7 @@ import torchvision
 import torch
 import tarfile
 import os
+from torchvision.transforms import ToPILImage  # Import the ToPILImage transform
 
 # Download Fashion MNIST
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
@@ -19,12 +20,15 @@ test_data = torchvision.datasets.FashionMNIST(root='./data', train=False, downlo
 # Save the dataset as a .tar file or other format for DVC tracking
 # Save the dataset as a tar file
 def save_as_tar(dataset, file_name):
+    to_pil = ToPILImage()  # Initialize ToPILImage transform
     with tarfile.open(file_name, "w:gz") as tar:
-        for data_item in dataset:
+        for i, data_item in enumerate(dataset):
             img, label = data_item
-            img_path = os.path.join('data', f"{label}.png")  # Save each image
+            img = to_pil(img)  # Convert the tensor to a PIL Image
+            img_path = os.path.join('data', f"{i}_{label}.png")  # Save each image with an index and label
             img.save(img_path)
             tar.add(img_path, arcname=os.path.basename(img_path))  # Add the image to the tar file
+            os.remove(img_path)  # Remove the file after adding to tar
 
 # Save training and test data
 save_as_tar(train_data, 'fashion_mnist_train.tar.gz')
