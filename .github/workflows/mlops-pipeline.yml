@@ -25,41 +25,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
+      - name: Install DVC and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install dvc
+          pip install torch torchvision
+
       - name: Initialize DVC
         run: |
-          dvc init
-          git config --global user.email "your-email@example.com"
-          git config --global user.name "Your Name"
+          dvc init  # Initializes DVC if not already done
 
-      - name: Set up DVC
+      - name: Download Fashion MNIST data
         run: |
-          pip install dvc dvc[gdrive]  # Install DVC with Google Drive support
-
-      - name: Authenticate DVC (Google Drive)
-        env:
-          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+          python -c "
+          import torchvision
+          import torch
+          transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
+          torchvision.datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
+          "
+          
+      - name: Track Fashion MNIST data with DVC
         run: |
-          echo "$GDRIVE_CREDENTIALS" > credentials.json
-          dvc remote modify myremote gdrive_use_service_account true
-          dvc remote modify myremote gdrive_service_account_json_file credentials.json
+          dvc add data  # Tracks the downloaded data with DVC
+          git add data.dvc .gitignore
+          git commit -m "Track Fashion MNIST data with DVC"
 
-      - name: Pull Data with DVC
-        run: dvc pull
-
-      - name: Run Training
-        run: python src/train.py
-
-      - name: Save Model Artifacts
+      - name: Run EDA and generate report
         run: |
-          mkdir -p artifacts
-          mv models/* artifacts/
-        if: success()
-
-      - name: Upload Model Artifacts
-        uses: actions/upload-artifact@v4
+          python src/eda.py
+          
+      - name: Upload EDA report as artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: trained-model
-          path: artifacts/
+          name: eda-report
+          path: eda_report.html
 
   docker:
     needs: train
