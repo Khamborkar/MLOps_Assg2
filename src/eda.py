@@ -8,6 +8,8 @@ from tensorflow.keras.datasets import fashion_mnist
 
 import torchvision
 import torch
+import tarfile
+import os
 
 # Download Fashion MNIST
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
