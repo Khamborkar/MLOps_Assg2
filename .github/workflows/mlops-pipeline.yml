@@ -31,6 +31,11 @@ jobs:
           pip install dvc
           pip install torch torchvision
 
+      - name: Set Git identity
+        run: |
+          git config --global user.email "2023aa05169@wilp.bits-pilani.ac.in"
+          git config --global user.name "Khamborkar"
+
       - name: Initialize DVC
         run: |
           dvc init  # Initializes DVC if not already done
