@@ -7,3 +7,6 @@ ydata_profiling
 sweetviz
 tensorflow
 IPython
+torch
+torchvision
+tarfile
