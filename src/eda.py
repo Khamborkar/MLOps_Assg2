@@ -1,3 +1,4 @@
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -14,7 +15,18 @@ train_data = torchvision.datasets.FashionMNIST(root='./data', train=True, downlo
 test_data = torchvision.datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
 
 # Save the dataset as a .tar file or other format for DVC tracking
+# Save the dataset as a tar file
+def save_as_tar(dataset, file_name):
+    with tarfile.open(file_name, "w:gz") as tar:
+        for data_item in dataset:
+            img, label = data_item
+            img_path = os.path.join('data', f"{label}.png")  # Save each image
+            img.save(img_path)
+            tar.add(img_path, arcname=os.path.basename(img_path))  # Add the image to the tar file
 
+# Save training and test data
+save_as_tar(train_data, 'fashion_mnist_train.tar.gz')
+save_as_tar(test_data, 'fashion_mnist_test.tar.gz')
 
 # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
