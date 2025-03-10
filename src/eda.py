@@ -67,18 +67,18 @@ train_df['label'] = train_labels[:subset_size]  # Add labels
 # settings.correlations = {"auto": False}  # Set correlations as a dictionary with auto set to False
 
 # Create a settings object and disable auto correlation
-config = Settings()
-config.correlations.auto = False  
+# config = Settings()
+# config.correlations.auto = False  
 # profile = ProfileReport(train_df.head(1000), explorative=True, config=config) 
 profile = ProfileReport(
-    train_df, 
+    train_df.head(1000), 
     explorative=True, 
-    config=config,
+    # config=config,
     missing_diagrams={"bar": False, "matrix": False, "heatmap": False},  # Avoid slow visualizations
     interactions={"continuous": False},  # Disable interaction plots
     duplicates={"head": 0}  # Skip duplicate analysis
 )
-profile = ProfileReport(train_df, minimal=True)
+# profile = ProfileReport(train_df, minimal=True)
 train_df = pd.DataFrame(train_images.reshape(-1, 28 * 28))
 
 #, config=settings)
