@@ -6,3 +6,4 @@ matplotlib
 ydata_profiling
 sweetviz
 tensorflow
+IPython
