@@ -54,8 +54,11 @@ save_as_tar(test_data, 'fashion_mnist_test.tar.gz')
 profile = ProfileReport(train_df, minimal=True)
 profile.to_file("reports/fashion_mnist_eda.html")
 
-# Generate Sweetviz report
-sv.analyze(train_df).show_html("reports/fashion_mnist_sweetviz.html")
+# # Generate Sweetviz report
+# sv.analyze(train_df).show_html("reports/fashion_mnist_sweetviz.html")
+# Generate Sweetviz report with pairwise analysis explicitly turned off
+sweet_report = sv.analyze(train_df, pairwise_analysis="off")
+sweet_report.show_html("reports/fashion_mnist_sweetviz.html")
 
 # Plot class distribution
 sns.countplot(x=train_labels[:subset_size])
