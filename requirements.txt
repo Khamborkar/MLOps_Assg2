@@ -9,3 +9,4 @@ tensorflow
 IPython
 torch
 torchvision
+numpy==1.23.5
