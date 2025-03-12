@@ -4,4 +4,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install dvc
 COPY . .
-CMD ["python", "src/train.py"]
+# CMD ["python", "src/train.py"]
