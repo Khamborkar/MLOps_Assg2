@@ -4,6 +4,14 @@ import mlflow.sklearn
 from sklearn.metrics import accuracy_score
 import tensorflow
 
+# Load Fashion MNIST dataset
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+# Convert dataset to Pandas DataFrame (subset for efficiency)
+subset_size = 500  
+train_df = pd.DataFrame(train_images[:subset_size].reshape(subset_size, -1))
+train_df['label'] = train_labels[:subset_size]
+
 # Model Monitoring and Drift Detection function
 def model_monitoring(model, X_val, y_val):
     # MLflow logging
