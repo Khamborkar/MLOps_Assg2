@@ -29,7 +29,7 @@ def run_feature_engineering():
   
 def run_automl():
   # AutoML & Hyperparameter Optimization
-  X_train, X_val, y_train, y_val, model = run_feature_engineering(train_df)
+  X_train, X_val, y_train, y_val, model = run_feature_engineering()
   best_params = automl_optimization(X_train, y_train, X_val, y_val)
   pass
 
