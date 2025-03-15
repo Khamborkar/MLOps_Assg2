@@ -8,7 +8,12 @@ import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
 import torchvision
 from torchvision.transforms import ToPILImage
-
+import seaborn as sns
+import matplotlib.pyplot as plt
+from ydata_profiling import ProfileReport
+from ydata_profiling.config import Settings
+import torch
+import tarfile
 # import main.py
 
 # Load Fashion MNIST dataset
