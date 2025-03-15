@@ -1,4 +1,5 @@
 # src/eda.py
+import os
 import pandas as pd
 from ydata_profiling import ProfileReport
 import sweetviz as sv
