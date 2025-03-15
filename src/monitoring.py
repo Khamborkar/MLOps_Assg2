@@ -2,6 +2,7 @@
 import mlflow
 import mlflow.sklearn
 from sklearn.metrics import accuracy_score
+import tensorflow
 
 # Model Monitoring and Drift Detection function
 def model_monitoring(model, X_val, y_val):
