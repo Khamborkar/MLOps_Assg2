@@ -10,3 +10,9 @@ IPython
 torch
 torchvision
 numpy==1.23.5
+seaborn
+scikit-learn
+shap
+optuna
+tpot
+mlflow
