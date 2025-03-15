@@ -8,6 +8,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy
 import pandas
+import tensorflow
+from tensorflow.keras.datasets import fashion_mnist
 
 # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
