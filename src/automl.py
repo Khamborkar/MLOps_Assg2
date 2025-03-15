@@ -1,6 +1,7 @@
 # src/automl.py
 from tpot import TPOTClassifier
 import optuna
+import tensorflow
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 
