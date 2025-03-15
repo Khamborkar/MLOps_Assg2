@@ -30,10 +30,12 @@ def run_feature_engineering():
 def run_automl():
   # AutoML & Hyperparameter Optimization
   best_params = automl_optimization(X_train, y_train, X_val, y_val)
+  pass
 
 def _run_monitoring():
   # Model Monitoring and Drift Detection
   model_monitoring(model, X_val, y_val)
+  pass
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
