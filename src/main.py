@@ -3,10 +3,10 @@ import pandas as pd
 import numpy
 import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
-from .eda import generate_eda_report
-from .feature_engineering import feature_engineering
-from .automl import automl_optimization
-from .monitoring import model_monitoring
+from eda import generate_eda_report
+from feature_engineering import feature_engineering
+from automl import automl_optimization
+from monitoring import model_monitoring
 
 # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
