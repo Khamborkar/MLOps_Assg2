@@ -2,6 +2,7 @@
 import pandas as pd
 from ydata_profiling import ProfileReport
 import sweetviz as sv
+import numpy
 
 # EDA function that accepts DataFrame
 def generate_eda_report(train_df):
