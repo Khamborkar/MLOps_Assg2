@@ -4,7 +4,6 @@ import optuna
 import tensorflow
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
-import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
 
 # Load Fashion MNIST dataset
