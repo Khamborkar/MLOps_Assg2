@@ -7,6 +7,8 @@ import numpy
 import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
 import torchvision
+from torchvision.transforms import ToPILImage
+
 # import main.py
 
 # Load Fashion MNIST dataset
