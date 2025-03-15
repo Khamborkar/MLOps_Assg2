@@ -3,6 +3,8 @@ import pandas as pd
 from ydata_profiling import ProfileReport
 import sweetviz as sv
 import numpy
+import tensorflow
+from tensorflow.keras.datasets import fashion_mnist
 # import main.py
 
 # Load Fashion MNIST dataset
