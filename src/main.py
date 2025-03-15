@@ -43,7 +43,7 @@ if __name__ == "__main__":
             run_eda()
         elif sys.argv[1] == "feature_engineering":
             run_feature_engineering()
-        elif sys.arg[1] == "automl":
+        elif sys.argv[1] == "automl":
             run_automl()
-        elif sys.arg[1] == "monitoring":
+        elif sys.argv[1] == "monitoring":
             run_monitoring()
