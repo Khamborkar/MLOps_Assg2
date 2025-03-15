@@ -1,5 +1,6 @@
 # main.py
 import pandas as pd
+import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
 from src.eda import generate_eda_report
 from src.feature_engineering import feature_engineering
