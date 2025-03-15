@@ -96,7 +96,7 @@ jobs:
 
   # Job 3: Feature Engineering and Explainability (SHAP)
   feature_engineering:
-    needs: eda  # This job also depends on the setup_data job
+    needs: setup_data  # This job also depends on the setup_data job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -123,7 +123,7 @@ jobs:
 
   # Job 4: AutoML and Hyperparameter Optimization
   automl:
-    needs: feature_engineering  # This job depends on setup_data
+    needs: setup_data  # This job depends on setup_data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -145,7 +145,7 @@ jobs:
 
   # Job 5: Model Monitoring and Performance Tracking
   monitoring:
-    needs: automl  # This job depends on setup_data
+    needs: setup_data  # This job depends on setup_data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
