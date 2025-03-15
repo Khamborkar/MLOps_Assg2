@@ -17,8 +17,6 @@ train_df['label'] = train_labels[:subset_size]
 
 # EDA function that accepts DataFrame
 def generate_eda_report(train_df):
-    import main
-    
     # Function to save dataset as tar file
     def save_as_tar(dataset, file_name, batch_size=100):
         os.makedirs("data", exist_ok=True)  # Ensure the directory exists
