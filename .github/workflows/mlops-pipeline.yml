@@ -86,7 +86,7 @@ jobs:
           
       - name: Run EDA and generate report
         run: |
-          python src/eda.py  # Make sure this runs your EDA and saves to the reports folder
+          python src/main.py eda  # Make sure this runs your EDA and saves to the reports folder
 
       - name: Upload EDA report as artifact
         uses: actions/upload-artifact@v4
@@ -113,7 +113,7 @@ jobs:
 
       - name: Run Feature Engineering and Explainability
         run: |
-          python src/feature_engineering.py  # Your script for feature engineering and SHAP explanation
+          python src/main.py feature_engineering  # Your script for feature engineering and SHAP explanation
 
       - name: Upload SHAP report as artifact
         uses: actions/upload-artifact@v4
@@ -135,7 +135,7 @@ jobs:
 
       - name: Run AutoML and Hyperparameter Optimization
         run: |
-          python src/automl.py  # Integrate your AutoML and hyperparameter tuning script here
+          python src/main.py automl  # Integrate your AutoML and hyperparameter tuning script here
 
       - name: Upload Model and Hyperparameter Tuning Results
         uses: actions/upload-artifact@v4
@@ -157,7 +157,7 @@ jobs:
 
       - name: Log Model Performance and Monitoring
         run: |
-          python src/monitoring.py  # Integrate model monitoring and performance logging here
+          python src/main.py monitoring  # Integrate model monitoring and performance logging here
 
       - name: Upload MLflow Logs
         uses: actions/upload-artifact@v4
