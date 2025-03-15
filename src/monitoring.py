@@ -4,6 +4,7 @@ import mlflow.sklearn
 from sklearn.metrics import accuracy_score
 import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
+import pandas as pd
 
 # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
