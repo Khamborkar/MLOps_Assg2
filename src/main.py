@@ -25,10 +25,11 @@ def run_eda():
 def run_feature_engineering():
   # Feature Engineering & Explainability
   X_train, X_val, y_train, y_val, model = feature_engineering(train_df)
-  pass
+  return X_train, X_val, y_train, y_val, model
   
 def run_automl():
   # AutoML & Hyperparameter Optimization
+  X_train, X_val, y_train, y_val, model = run_feature_engineering(train_df)
   best_params = automl_optimization(X_train, y_train, X_val, y_val)
   pass
 
@@ -46,4 +47,4 @@ if __name__ == "__main__":
         elif sys.argv[1] == "automl":
             run_automl()
         elif sys.argv[1] == "monitoring":
-            run_monitoring()
+            _run_monitoring()
