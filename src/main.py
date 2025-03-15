@@ -34,6 +34,7 @@ def run_automl():
   pass
 
 def _run_monitoring():
+  X_train, X_val, y_train, y_val, model = run_feature_engineering()
   # Model Monitoring and Drift Detection
   model_monitoring(model, X_val, y_val)
   pass
