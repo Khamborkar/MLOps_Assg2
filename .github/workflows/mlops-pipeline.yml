@@ -65,23 +65,23 @@ jobs:
           name: fashion_mnist_eda
           path: reports/fashion_mnist_eda.html
 
-  docker:
-    needs: train
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+  # docker:
+  #   needs: train
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v2
 
-      - name: Log in to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.khamborkar}}
-          password: ${{ secrets.dckr_pat_Re60MVxgliz9DZfs4QbG1meT0_8}}
+  #     - name: Log in to DockerHub
+  #       uses: docker/login-action@v2
+  #       with:
+  #         username: ${{ secrets.khamborkar}}
+  #         password: ${{ secrets.dckr_pat_Re60MVxgliz9DZfs4QbG1meT0_8}}
 
-      - name: Build and Push Docker Image
-        run: |
-          docker build -t ${{ secrets.khamborkar }}/fashion-mnist-mlops:latest .
-          docker push ${{ secrets.khamborkar }}/fashion-mnist-mlops:latest
+  #     - name: Build and Push Docker Image
+  #       run: |
+  #         docker build -t ${{ secrets.khamborkar }}/fashion-mnist-mlops:latest .
+  #         docker push ${{ secrets.khamborkar }}/fashion-mnist-mlops:latest
