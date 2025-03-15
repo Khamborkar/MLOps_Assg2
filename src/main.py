@@ -24,7 +24,7 @@ def run_eda():
 
 def run_feature_engineering():
   # Feature Engineering & Explainability
-  X_train, X_val, y_train, y_val, model = feature_engineering(train_df)
+  X_train, X_val, y_train, y_val, model = feature_engineering()
   return X_train, X_val, y_train, y_val, model
   
 def run_automl():
