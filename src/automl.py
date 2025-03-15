@@ -2,9 +2,9 @@
 from tpot import TPOTClassifier
 import optuna
 import tensorflow
+from tensorflow.keras.datasets import fashion_mnist
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
-from tensorflow.keras.datasets import fashion_mnist
 import pandas as pd
 
 # Load Fashion MNIST dataset
