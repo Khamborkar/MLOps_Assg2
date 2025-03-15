@@ -5,6 +5,8 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
+import numpy
+import pandas
 
 # Feature Engineering & Explainability function
 def feature_engineering(train_df):
