@@ -5,6 +5,7 @@ import sweetviz as sv
 import numpy
 import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
+import torchvision
 # import main.py
 
 # Load Fashion MNIST dataset
