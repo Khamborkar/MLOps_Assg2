@@ -77,7 +77,7 @@ jobs:
 
       - name: Install Numpy first
         run: |
-          python -m pip install numpy==1.23.5
+          pip install numpy==1.23.5 --only-binary :all:
 
       - name: Install Dependencies
         run: |
