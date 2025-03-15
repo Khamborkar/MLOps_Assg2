@@ -9,7 +9,8 @@ on:
       - dev_otherfeatures
 
 jobs:
-  train:
+  # Job 1: Set up environment and download data
+  setup_data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -19,15 +20,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
+
       - name: Install DVC and dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install dvc
           pip install torch torchvision
 
@@ -48,25 +48,100 @@ jobs:
           transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
           torchvision.datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
           "
-          
+
       - name: Track Fashion MNIST data with DVC
         run: |
           dvc add data  # Tracks the downloaded data with DVC
           git add data.dvc .gitignore
           git commit -m "Track Fashion MNIST data with DVC"
 
+  # Job 2: Exploratory Data Analysis (EDA)
+  eda:
+    needs: setup_data  # This job depends on the setup_data job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Run EDA and generate report
         run: |
-          python src/eda.py
-          
+          python src/eda.py  # Make sure this runs your EDA and saves to the reports folder
+
       - name: Upload EDA report as artifact
         uses: actions/upload-artifact@v4
         with:
           name: fashion_mnist_eda
           path: reports/fashion_mnist_eda.html
 
+  # Job 3: Feature Engineering and Explainability (SHAP)
+  feature_engineering:
+    needs: setup_data  # This job also depends on the setup_data job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install SHAP
+        run: |
+          pip install shap  # Install SHAP for explainability
+
+      - name: Run Feature Engineering and Explainability
+        run: |
+          python src/feature_engineering_and_explainability.py  # Your script for feature engineering and SHAP explanation
+
+      - name: Upload SHAP report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shap_report
+          path: reports/shap_summary_plot.png
+
+  # Job 4: AutoML and Hyperparameter Optimization
+  automl:
+    needs: setup_data  # This job depends on setup_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install AutoML dependencies
+        run: |
+          pip install optuna tpot  # AutoML libraries
+
+      - name: Run AutoML and Hyperparameter Optimization
+        run: |
+          python src/automl_optuna.py  # Integrate your AutoML and hyperparameter tuning script here
+
+      - name: Upload Model and Hyperparameter Tuning Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: automl_results
+          path: results/automl_report.html
+
+  # Job 5: Model Monitoring and Performance Tracking
+  monitoring:
+    needs: setup_data  # This job depends on setup_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install MLflow
+        run: |
+          pip install mlflow  # Install MLflow for model performance tracking
+
+      - name: Log Model Performance and Monitoring
+        run: |
+          python src/model_monitoring.py  # Integrate model monitoring and performance logging here
+
+      - name: Upload MLflow Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow_logs
+          path: mlruns/  # Ensure this path is the one where MLflow logs are stored
+
+  # # Job 6: Build and Push Docker Image (optional)
   # docker:
-  #   needs: train
+  #   needs: [setup_data, eda, feature_engineering, automl, monitoring]  # This job depends on all other jobs
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout Repository
@@ -78,8 +153,8 @@ jobs:
   #     - name: Log in to DockerHub
   #       uses: docker/login-action@v2
   #       with:
-  #         username: ${{ secrets.khamborkar}}
-  #         password: ${{ secrets.dckr_pat_Re60MVxgliz9DZfs4QbG1meT0_8}}
+  #         username: ${{ secrets.khamborkar }}
+  #         password: ${{ secrets.dckr_pat_Re60MVxgliz9DZfs4QbG1meT0_8 }}
 
   #     - name: Build and Push Docker Image
   #       run: |
