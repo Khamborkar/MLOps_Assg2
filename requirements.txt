@@ -1,6 +1,6 @@
+pandas
 dvc
 dvc[gdrive]  # Add this if using Google Drive
-pandas
 seaborn
 matplotlib
 ydata_profiling
