@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy
-import pandas
+import pandas as pd
 import tensorflow
 from tensorflow.keras.datasets import fashion_mnist
 
