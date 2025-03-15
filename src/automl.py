@@ -5,6 +5,14 @@ import tensorflow
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 
+# Load Fashion MNIST dataset
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+# Convert dataset to Pandas DataFrame (subset for efficiency)
+subset_size = 500  
+train_df = pd.DataFrame(train_images[:subset_size].reshape(subset_size, -1))
+train_df['label'] = train_labels[:subset_size]
+
 # AutoML & Hyperparameter Optimization function
 def automl_optimization(X_train, y_train, X_val, y_val):
     # AutoML using TPOT
