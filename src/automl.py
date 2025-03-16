@@ -35,5 +35,13 @@ def automl_optimization(X_train, y_train, X_val, y_val):
     study = optuna.create_study(direction="maximize")
     study.optimize(objective, n_trials=10)
     print("Best hyperparameters:", study.best_params)
+
+    # Save report
+    report_path = "results/automl_report.html"
+    with open(report_path, "w") as f:
+        f.write(f"<h2>AutoML Report</h2>")
+        f.write(f"<p>Best Hyperparameters: {best_params}</p>")
+
+    print(f"Report saved at {report_path}")
     
     return study.best_params
