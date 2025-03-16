@@ -37,7 +37,7 @@ def automl_optimization(X_train, y_train, X_val, y_val):
     print("Best hyperparameters:", study.best_params)
 
     # Save report
-    report_path = "results/automl_report.html"
+    report_path = "reports/automl_report.html"
     with open(report_path, "w") as f:
         f.write(f"<h2>AutoML Report</h2>")
         f.write(f"<p>Best Hyperparameters: {best_params}</p>")
