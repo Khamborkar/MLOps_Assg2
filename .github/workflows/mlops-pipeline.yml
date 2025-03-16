@@ -3,10 +3,10 @@ name: MLOps Pipeline with DVC & Docker
 on:
   push:
     branches:
-      - dev_otherfeatures
+      - main
   pull_request:
     branches:
-      - dev_otherfeatures
+      - main
 
 jobs:
   # Job 1: Set up environment and download data
