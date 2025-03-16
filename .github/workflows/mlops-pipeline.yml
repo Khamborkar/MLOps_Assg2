@@ -148,7 +148,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: automl_results
-          path: results/automl_report.html
+          path: reports/automl_report.html
 
   # Job 5: Model Monitoring and Performance Tracking
   monitoring:
